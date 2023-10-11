@@ -1,4 +1,4 @@
-package com.academia.academia;
+package com.residencia.academia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
