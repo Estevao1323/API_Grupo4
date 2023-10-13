@@ -27,8 +27,8 @@ public class Instrutor {
 	@Column(name = "codigoinstrutor")
 	private Integer codigoInstrutor;
 	
-	@Column(name = "rginstrutor")
-	private Integer rgInstrutor;
+	@Column(name = "rginstrutor", unique = true)
+	private Long rgInstrutor;
 	
 	@Column(name = "nomeinstrutor")
 	private String nomeInstrutor;
@@ -47,11 +47,11 @@ public class Instrutor {
 		this.codigoInstrutor = codigoInstrutor;
 	}
 
-	public Integer getRgInstrutor() {
+	public Long getRgInstrutor() {
 		return rgInstrutor;
 	}
 
-	public void setRgInstrutor(Integer rgInstrutor) {
+	public void setRgInstrutor(Long rgInstrutor) {
 		this.rgInstrutor = rgInstrutor;
 	}
 

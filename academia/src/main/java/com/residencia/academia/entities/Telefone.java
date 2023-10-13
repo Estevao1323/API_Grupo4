@@ -3,7 +3,6 @@ package com.residencia.academia.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,15 +27,11 @@ public class Telefone {
 	private Integer codigoTelefone;
 		
 	@Column(name = "numerotelefone")
-	private String numeroTelefone;
+	private Long numeroTelefone;
 	
-//	@OneToOne
-//    @JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor")
-//    private Instrutor instrutor;
-//	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor")
-	private Instrutor instrutor;
+	@OneToOne(optional = false)
+    @JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor", unique = true)
+    private Instrutor instrutor;
 
 	public Integer getCodigoTelefone() {
 		return codigoTelefone;
@@ -46,11 +41,11 @@ public class Telefone {
 		this.codigoTelefone = codigoTelefone;
 	}
 
-	public String getNumeroTelefone() {
+	public Long getNumeroTelefone() {
 		return numeroTelefone;
 	}
 
-	public void setNumeroTelefone(String numeroTelefone) {
+	public void setNumeroTelefone(Long numeroTelefone) {
 		this.numeroTelefone = numeroTelefone;
 	}
 
