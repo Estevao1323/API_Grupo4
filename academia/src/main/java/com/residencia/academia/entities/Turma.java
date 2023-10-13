@@ -1,16 +1,22 @@
 package com.residencia.academia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-//id (serial)
-//nome_disciplina (varchar)
-//dia_semana (varchar)
-//id_instrutor (int4)
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "codigoTurma",
+		scope = Telefone.class
+)
 
 @Entity
 @Table(name = "turma")
@@ -27,8 +33,9 @@ public class Turma {
 	@Column(name = "dia_semana")
 	private String diaSemana;
 	
-	@Column(name = "id_instrutor")
-	private Integer idInstrutor;
+	@ManyToOne
+	@JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor")
+	private Instrutor instrutor;
 
 	public Integer getCodigoTurma() {
 		return codigoTurma;
@@ -54,13 +61,14 @@ public class Turma {
 		this.diaSemana = diaSemana;
 	}
 
-	public Integer getIdInstrutor() {
-		return idInstrutor;
+	public Instrutor getInstrutor() {
+		return instrutor;
 	}
 
-	public void setIdInstrutor(Integer idInstrutor) {
-		this.idInstrutor = idInstrutor;
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
 	}
+
 	
 	
 }

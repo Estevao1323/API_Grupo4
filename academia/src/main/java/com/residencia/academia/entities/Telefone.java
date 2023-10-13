@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @JsonIdentityInfo(
@@ -23,12 +25,13 @@ public class Telefone {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigotelefone")
 	private Integer codigoTelefone;
-	
-	@Column(name = "codigoinstrutor")
-	private Integer codigoInstrutor;
-	
+		
 	@Column(name = "numerotelefone")
-	private Integer numeroTelefone;
+	private Long numeroTelefone;
+	
+	@OneToOne(optional = false)
+    @JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor", unique = true)
+    private Instrutor instrutor;
 
 	public Integer getCodigoTelefone() {
 		return codigoTelefone;
@@ -38,20 +41,21 @@ public class Telefone {
 		this.codigoTelefone = codigoTelefone;
 	}
 
-	public Integer getCodigoInstrutor() {
-		return codigoInstrutor;
-	}
-
-	public void setCodigoInstrutor(Integer codigoInstrutor) {
-		this.codigoInstrutor = codigoInstrutor;
-	}
-
-	public Integer getNumeroTelefone() {
+	public Long getNumeroTelefone() {
 		return numeroTelefone;
 	}
 
-	public void setNumeroTelefone(Integer numeroTelefone) {
+	public void setNumeroTelefone(Long numeroTelefone) {
 		this.numeroTelefone = numeroTelefone;
 	}
+
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
+	}
+	
 	
 }
